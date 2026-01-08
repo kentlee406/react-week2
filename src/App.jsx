@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import "./assets/style.css";
 
-const API_BASE = "https://ec-course-api.hexschool.io/v2";
-const API_PATH = "kentlee406";
+const API_BASE = import.meta.env.VITE_API_BASE;
+const API_PATH = import.meta.env.VITE_API_PATH;
 
 function App() {
   const [formData, setFormData] = useState({
@@ -74,14 +74,6 @@ function App() {
         <div className="container">
           <div className="row mt-5">
             <div className="col-md-6">
-              <button
-                className="btn btn-danger mb-5"
-                type="button"
-                id="check"
-                onClick={checkLogin}
-              >
-                確認是否登入
-              </button>
               <h2>產品列表</h2>
               <table className="table">
                 <thead>
@@ -126,7 +118,7 @@ function App() {
                   <img
                     src={tempProduct.imageUrl}
                     className="card-img-top primary-image"
-                    alt="主圖"
+                    alt={tempProduct.title}
                   />
                   <div className="card-body">
                     <h5 className="card-title">
@@ -204,7 +196,6 @@ function App() {
               </form>
             </div>
           </div>
-          <p className="mt-5 mb-3 text-muted">&copy; 2025~∞ - 六角學院</p>
         </div>
       )}
     </>
