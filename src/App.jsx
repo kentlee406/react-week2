@@ -21,11 +21,9 @@ function App() {
         .split("; ")
         .find((row) => row.startsWith("hexToken="))
         ?.split("=")[1];
-      console.log(token);
       axios.defaults.headers.common.Authorization = token;
 
       const res = await axios.post(`${API_BASE}/api/user/check`);
-      console.log(res);
     } catch (error) {
       console.error(error);
     }
@@ -34,7 +32,7 @@ function App() {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `${API_BASE}/api/${API_PATH}/admin/products`
+        `${API_BASE}/api/${API_PATH}/admin/products`,
       );
       setProducts(response.data.products);
     } catch (err) {
@@ -165,6 +163,7 @@ function App() {
                 <div className="form-floating mb-3">
                   <input
                     type="email"
+                    name="email"
                     className="form-control"
                     id="username"
                     placeholder="name@example.com"
@@ -178,6 +177,7 @@ function App() {
                 <div className="form-floating">
                   <input
                     type="password"
+                    name="password"
                     className="form-control"
                     id="password"
                     placeholder="Password"
